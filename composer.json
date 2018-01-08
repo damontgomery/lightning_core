@@ -76,10 +76,6 @@
                 "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
                 "2885441 - EntityReferenceAutocompleteWidget should define its size setting as an integer":
                 "https://www.drupal.org/files/issues/2885441-2.patch",
-                "2883813 - Move File/Image media type into Standard once Media is stable":
-                "https://www.drupal.org/files/issues/2883813-27.patch",
-                "2877383 - Add action support to Media module":
-                "https://www.drupal.org/files/issues/2877383-23.patch",
                 "2862041 - Provide useful Views filters for Content Moderation State fields":
                 "https://www.drupal.org/files/issues/2862041-229.patch",
                 "2815221 - Add quickedit to the latest-revision route":
