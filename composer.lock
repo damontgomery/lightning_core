@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c1883de5ce74ec9ae9aa3a27276bd05",
+    "content-hash": "0af8b0388b24c217b8ed9193d1ba2a8c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3361,12 +3361,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/acquia/lightning-dev.git",
-                "reference": "19351582c026071c9e637bae67c23b5a5cfcc689"
+                "reference": "be29ef6b55e87dc3f9b1891359e60fb02ca3e722"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acquia/lightning-dev/zipball/19351582c026071c9e637bae67c23b5a5cfcc689",
-                "reference": "19351582c026071c9e637bae67c23b5a5cfcc689",
+                "url": "https://api.github.com/repos/acquia/lightning-dev/zipball/be29ef6b55e87dc3f9b1891359e60fb02ca3e722",
+                "reference": "be29ef6b55e87dc3f9b1891359e60fb02ca3e722",
                 "shasum": ""
             },
             "require": {
@@ -3426,7 +3426,8 @@
             },
             "autoload": {
                 "classmap": [
-                    "Commands/"
+                    "Commands/",
+                    "tests/contexts/AwaitTrait.inc"
                 ]
             },
             "scripts": {
@@ -3456,7 +3457,7 @@
                 "source": "https://github.com/acquia/lightning-dev/tree/8.x-1.x",
                 "issues": "https://github.com/acquia/lightning-dev/issues"
             },
-            "time": "2018-01-05T20:15:55+00:00"
+            "time": "2018-01-30T16:01:06+00:00"
         },
         {
             "name": "behat/behat",

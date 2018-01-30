@@ -125,7 +125,8 @@ function lightning_core_modules_installed(array $modules) {
   if (\Drupal::isConfigSyncing()) {
     return;
   }
-  elseif (in_array('token', $modules)) {
+
+  if (in_array('token', $modules, TRUE)) {
     $view_modes = [];
     foreach (\Drupal::entityTypeManager()->getDefinitions() as $entity_type) {
       $view_modes[] = $entity_type->id() . '.token';
@@ -137,6 +138,26 @@ function lightning_core_modules_installed(array $modules) {
       $view_mode->setThirdPartySetting('lightning_core', 'internal', TRUE)
         ->save();
     }
+  }
+
+  if (in_array('lightning_dev', $modules, TRUE)) {
+    $administrator = Role::load('administrator');
+    if ($administrator == NULL) {
+      $administrator = Role::create([
+        'id' => 'administrator',
+        'label' => 'Administrator'
+      ]);
+      $administrator->setIsAdmin(TRUE);
+      $administrator->save();
+    }
+
+    \Drupal::service('theme_installer')->install(['seven']);
+
+    \Drupal::configFactory()
+      ->getEditable('system.theme')
+      ->set('admin', 'seven')
+      ->set('default', 'seven')
+      ->save();
   }
 }
 
