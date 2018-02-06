@@ -29,6 +29,15 @@ function lightning_search_modules_installed(array $modules) {
       'pages' => '/search',
     ]);
     $block->save();
+
+    /** @var \Drupal\views\ViewEntityInterface $view */
+    $view = entity_load('view', 'search');
+    $display = &$view->getDisplay('default');
+    $display['display_options']['cache'] = [
+      'type' => 'none',
+      'options' => [],
+    ];
+    $view->save();
   }
 }
 
