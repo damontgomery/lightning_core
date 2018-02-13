@@ -2,8 +2,8 @@
 
 namespace Drupal\lightning_core;
 
-use Drupal\Component\Annotation\Plugin\Discovery\AnnotatedClassDiscovery;
 use Drupal\Component\Plugin\Discovery\DiscoveryInterface;
+use Drupal\Core\Plugin\Discovery\AnnotatedClassDiscovery;
 use Drupal\lightning_core\Annotation\Update;
 use phpDocumentor\Reflection\DocBlock;
 
