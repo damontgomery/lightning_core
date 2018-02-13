@@ -88,6 +88,7 @@
         "enable-patching": true
     },
     "require-dev": {
-        "acquia/lightning_dev": "dev-8.x-1.x"
+        "acquia/lightning_dev": "dev-8.x-1.x",
+        "drupal/console": "^1.0.0"
     }
 }
