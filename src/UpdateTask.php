@@ -53,12 +53,12 @@ class UpdateTask {
    * @return bool
    *   TRUE if the task is confirmed, FALSE otherwise.
    */
-  protected function confirm(StyleInterface $out) {
+  protected function confirm(StyleInterface $io) {
     if ($this->docBlock->hasTag('ask')) {
       $tags = $this->docBlock->getTagsByName('ask');
       $tag = reset($tags);
 
-      return $out->confirm($tag->getContent());
+      return $io->confirm($tag->getContent());
     }
     return TRUE;
   }
@@ -66,16 +66,16 @@ class UpdateTask {
   /**
    * Prompts for confirmation and executes the task.
    *
-   * @param \Symfony\Component\Console\Style\StyleInterface $out
-   *   The output style.
+   * @param \Symfony\Component\Console\Style\StyleInterface $io
+   *   The console style handler.
    * @param bool $force
    *   (optional) If TRUE, the task is executed without confirmation.
    */
-  public function execute(StyleInterface $out, $force = FALSE) {
-    $proceed = $force ? TRUE : $this->confirm($out);
+  public function execute(StyleInterface $io, $force = FALSE) {
+    $proceed = $force ? TRUE : $this->confirm($io);
 
     if ($proceed) {
-      $this->reflector->invoke($this->handler, $out);
+      $this->reflector->invoke($this->handler, $io);
     }
   }
 

@@ -85,6 +85,11 @@
                 "https://www.drupal.org/files/issues/2815221-69-8.4.x.patch"
             }
         },
+        "drush": {
+            "services": {
+                "drush.services.yml": "^9"
+            }
+        },
         "enable-patching": true
     },
     "require-dev": {
