@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\lightning_roles\Kernel;
 
+use Drupal\KernelTests\KernelTestBase;
 use Drupal\node\Entity\NodeType;
-use Drupal\Tests\token\Kernel\KernelTestBase;
 use Drupal\user\Entity\Role;
 
 /**
