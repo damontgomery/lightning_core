@@ -3,6 +3,7 @@
 namespace Drupal\Tests\lightning_core\Unit;
 
 use Drupal\Component\Plugin\Discovery\DiscoveryInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\ClassResolver;
 use Drupal\lightning_core\UpdateManager;
 use Drupal\Tests\UnitTestCase;
@@ -35,7 +36,11 @@ class UpdateManagerTest extends UnitTestCase {
       ],
     ]);
 
-    $update_manager = new UpdateManager(new \ArrayIterator, new ClassResolver, $discovery->reveal());
+    $update_manager = new UpdateManager(
+      new \ArrayIterator,
+      new ClassResolver,
+      $this->prophesize(ConfigFactoryInterface::class)->reveal(),
+      $discovery->reveal());
 
     $definitions = $update_manager->getAvailable('1.2.2');
     $this->assertCount(1, $definitions);

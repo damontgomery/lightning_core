@@ -126,6 +126,18 @@ function lightning_core_modules_installed(array $modules) {
     return;
   }
 
+  // Record the semantic version of every module in the lightning.versions
+  // config object.
+  $versions = \Drupal::configFactory()->getEditable('lightning.versions');
+
+  /** @var \Drupal\lightning_core\UpdateManager $update_manager */
+  $update_manager = \Drupal::service('lightning.update_manager');
+
+  foreach ($modules as $module) {
+    $versions->set($module, $update_manager->getVersion($module));
+  }
+  $versions->save();
+
   if (in_array('token', $modules, TRUE)) {
     $view_modes = [];
     foreach (\Drupal::entityTypeManager()->getDefinitions() as $entity_type) {
