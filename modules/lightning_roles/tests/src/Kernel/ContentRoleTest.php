@@ -15,9 +15,11 @@ class ContentRoleTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'lightning_roles',
     'node',
+    'system',
+    'user',
   ];
 
   /**
