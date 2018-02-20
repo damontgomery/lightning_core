@@ -29,18 +29,12 @@ class LightningCoreCommands extends DrushCommands {
    *
    * @command update:lightning
    *
-   * @param string $since_version Argument description.
-   *   The semantic version from which to update, e.g. 2.1.7. To run all updates
-   *   from the beginning of time, use 0.0.0.
-   *
-   * @usage update:lightning 2.1.7
-   *   Runs all configuration updates since and including Lightning 2.1.7.
-   * @usage update:lightning 0.0.0
-   *   Runs all configuration updates since the beginning of time.
+   * @usage update:lightning
+   *   Runs all available configuration updates.
    */
-  public function commandName($since_version) {
+  public function update() {
     $io = new DrushStyle($this->input(), $this->output());
-    $this->updateManager->executeAllInConsole($since_version, $io);
+    $this->updateManager->executeAllInConsole($io);
   }
 
 }
