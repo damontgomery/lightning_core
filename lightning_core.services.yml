@@ -26,11 +26,12 @@ services:
     class: '\Drupal\lightning_core\UpdateManager'
     arguments:
       - '@container.namespaces'
+      - '@class_resolver'
+      - '@config.factory'
 
   lightning.command.update:
     class: '\Drupal\lightning_core\Command\UpdateCommand'
     arguments:
       - '@lightning.update_manager'
-      - '@class_resolver'
     tags:
       - { name: drupal.command }

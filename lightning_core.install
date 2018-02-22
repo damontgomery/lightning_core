@@ -16,6 +16,9 @@ function lightning_core_install() {
     return;
   }
 
+  // Record our own version number in config.
+  lightning_core_modules_installed(['lightning_core']);
+
   // Mark core view modes as internal.
   lightning_core_update_8002();
 }
@@ -85,4 +88,14 @@ function lightning_core_update_8005() {
     }
   }
   $source->clear('content_roles')->save();
+}
+
+/**
+ * Records all modules' semantic version numbers in config.
+ */
+function lightning_core_update_8006() {
+  $modules = \Drupal::moduleHandler()->getModuleList();
+  $modules = array_keys($modules);
+
+  lightning_core_modules_installed($modules);
 }

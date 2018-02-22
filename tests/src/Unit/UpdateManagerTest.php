@@ -4,6 +4,7 @@ namespace Drupal\Tests\lightning_core\Unit;
 
 use Drupal\Component\Plugin\Discovery\DiscoveryInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\DependencyInjection\ClassResolver;
 use Drupal\lightning_core\UpdateManager;
 use Drupal\Tests\UnitTestCase;
@@ -36,13 +37,20 @@ class UpdateManagerTest extends UnitTestCase {
       ],
     ]);
 
+    $config = $this->prophesize(ImmutableConfig::class);
+    $config->get('fubar')->willReturn('1.2.2');
+
+    $config_factory = $this->prophesize(ConfigFactoryInterface::class);
+    $config_factory->get('lightning.versions')->willReturn($config->reveal());
+
     $update_manager = new UpdateManager(
       new \ArrayIterator,
       new ClassResolver,
-      $this->prophesize(ConfigFactoryInterface::class)->reveal(),
-      $discovery->reveal());
+      $config_factory->reveal(),
+      $discovery->reveal()
+    );
 
-    $definitions = $update_manager->getAvailable('1.2.2');
+    $definitions = $update_manager->getAvailable();
     $this->assertCount(1, $definitions);
     $this->assertArrayHasKey('fubar:1.2.3', $definitions);
   }

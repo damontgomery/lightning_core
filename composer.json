@@ -83,10 +83,14 @@
                 "https://www.drupal.org/files/issues/2815221-87.patch"
             }
         },
+        "drush": {
+            "services": {
+                "drush.services.yml": "^9"
+            }
+        },
         "enable-patching": true
     },
     "require-dev": {
-        "acquia/lightning_dev": "dev-8.x-1.x",
-        "drupal/console": "^1.0.0"
+        "acquia/lightning_dev": "dev-8.x-1.x"
     }
 }

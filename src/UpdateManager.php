@@ -127,21 +127,21 @@ class UpdateManager {
   }
 
   /**
-   * Returns all available update definitions since a given version.
-   *
-   * @param string $since_version
-   *   The version from which to update.
+   * Returns all available update definitions.
    *
    * @return array[]
    *   The available update definitions.
    */
-  public function getAvailable($since_version) {
-    $definitions = $this->getDefinitions();
+  public function getAvailable() {
+    $versions = $this->configFactory->get('lightning.versions');
 
-    $filter = function (array $definition) use ($since_version) {
-      return version_compare($definition['id'], $since_version, '>');
+    $filter = function (array $definition) use ($versions) {
+      $provider_version = $versions->get($definition['provider']) ?: static::VERSION_UNKNOWN;
+
+      return version_compare($definition['id'], $provider_version, '>');
     };
-    return array_filter($definitions, $filter);
+
+    return array_filter($this->getDefinitions(), $filter);
   }
 
   /**
@@ -169,19 +169,25 @@ class UpdateManager {
     }
   }
 
-  public function executeAllInConsole($since_version, StyleInterface $style) {
-    $definitions = $this->getAvailable($since_version);
+  /**
+   * Executes all available updates in a console context.
+   *
+   * @param \Symfony\Component\Console\Style\StyleInterface $style
+   *   The I/O style.
+   */
+  public function executeAllInConsole(StyleInterface $style) {
+    $updates = $this->getAvailable();
 
-    if (sizeof($definitions) === 0) {
+    if (sizeof($updates) === 0) {
       return $style->text('There are no updates available.');
     }
-    $style->text("Executing all updates since version $since_version.");
+    $style->text("Executing all available updates...");
 
     $module_info = system_rebuild_module_data();
     $provider = NULL;
     $versions = $this->configFactory->getEditable('lightning.versions');
 
-    foreach ($definitions as $update) {
+    foreach ($updates as $update) {
       if ($update['provider'] != $provider) {
         $provider = $update['provider'];
         $style->text($module_info[$provider]->info['name'] . ' ' . $update['id']);
