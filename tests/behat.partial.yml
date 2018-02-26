@@ -3,8 +3,8 @@ default:
     default:
       paths:
         - '%paths.base%/features'
-#  extensions:
-#    'Drupal\DrupalExtension':
-#      subcontexts:
-#        paths:
-#          - '%paths.base%/contexts'
+  extensions:
+    'Drupal\DrupalExtension':
+      subcontexts:
+        paths:
+          - '%paths.base%/contexts'
