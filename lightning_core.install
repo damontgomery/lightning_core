@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Entity\Entity\EntityViewMode;
+use Drupal\lightning_core\UpdateManager;
 
 /**
  * Implements hook_install().
@@ -98,4 +99,12 @@ function lightning_core_update_8006() {
   $modules = array_keys($modules);
 
   lightning_core_modules_installed($modules);
+}
+
+/**
+ * Renames the lightning.versions config object.
+ */
+function lightning_core_update_8007() {
+  \Drupal::configFactory()
+    ->rename('lightning.versions', UpdateManager::CONFIG_NAME);
 }

@@ -2,10 +2,6 @@
 
 namespace Drupal\Tests\lightning_core\Unit;
 
-use Drupal\Component\Plugin\Discovery\DiscoveryInterface;
-use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Config\ImmutableConfig;
-use Drupal\Core\DependencyInjection\ClassResolver;
 use Drupal\lightning_core\UpdateManager;
 use Drupal\Tests\UnitTestCase;
 
@@ -16,44 +12,6 @@ use Drupal\Tests\UnitTestCase;
  * @group lightning_core
  */
 class UpdateManagerTest extends UnitTestCase {
-
-  /**
-   * @covers ::getAvailable
-   */
-  public function testGetAvailable() {
-    $discovery = $this->prophesize(DiscoveryInterface::class);
-    $discovery->getDefinitions()->willReturn([
-      'fubar:1.2.1' => [
-        'id' => '1.2.1',
-        'provider' => 'fubar',
-      ],
-      'fubar:1.2.2' => [
-        'id' => '1.2.2',
-        'provider' => 'fubar',
-      ],
-      'fubar:1.2.3' => [
-        'id' => '1.2.3',
-        'provider' => 'fubar',
-      ],
-    ]);
-
-    $config = $this->prophesize(ImmutableConfig::class);
-    $config->get('fubar')->willReturn('1.2.2');
-
-    $config_factory = $this->prophesize(ConfigFactoryInterface::class);
-    $config_factory->get('lightning.versions')->willReturn($config->reveal());
-
-    $update_manager = new UpdateManager(
-      new \ArrayIterator,
-      new ClassResolver,
-      $config_factory->reveal(),
-      $discovery->reveal()
-    );
-
-    $definitions = $update_manager->getAvailable();
-    $this->assertCount(1, $definitions);
-    $this->assertArrayHasKey('fubar:1.2.3', $definitions);
-  }
 
   /**
    * @covers ::toSemanticVersion

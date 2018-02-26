@@ -15,6 +15,7 @@ use Drupal\lightning_core\Entity\Role;
 use Drupal\lightning_core\Form\RoleForm;
 use Drupal\lightning_core\OverrideHelper as Override;
 use Drupal\lightning_core\Plugin\views\filter\Bundle;
+use Drupal\lightning_core\UpdateManager;
 
 /**
  * Implements hook_local_tasks_alter().
@@ -126,9 +127,8 @@ function lightning_core_modules_installed(array $modules) {
     return;
   }
 
-  // Record the semantic version of every module in the lightning.versions
-  // config object.
-  $versions = \Drupal::configFactory()->getEditable('lightning.versions');
+  // Record the semantic version of every module in config.
+  $versions = \Drupal::configFactory()->getEditable(UpdateManager::CONFIG_NAME);
 
   /** @var \Drupal\lightning_core\UpdateManager $update_manager */
   $update_manager = \Drupal::service('lightning.update_manager');

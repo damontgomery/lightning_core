@@ -13,6 +13,13 @@ use Symfony\Component\Console\Style\StyleInterface;
 class UpdateManager {
 
   /**
+   * Name of the config object which stores version numbers.
+   *
+   * @var string
+   */
+  const CONFIG_NAME = 'lightning_core.versions';
+
+  /**
    * Fallback version number used when a module does not declare it.
    *
    * @var string
@@ -133,7 +140,7 @@ class UpdateManager {
    *   The available update definitions.
    */
   public function getAvailable() {
-    $versions = $this->configFactory->get('lightning.versions');
+    $versions = $this->configFactory->getEditable(static::CONFIG_NAME);
 
     $filter = function (array $definition) use ($versions) {
       $provider_version = $versions->get($definition['provider']) ?: static::VERSION_UNKNOWN;
@@ -185,7 +192,7 @@ class UpdateManager {
 
     $module_info = system_rebuild_module_data();
     $provider = NULL;
-    $versions = $this->configFactory->getEditable('lightning.versions');
+    $versions = $this->configFactory->getEditable(static::CONFIG_NAME);
 
     foreach ($updates as $update) {
       if ($update['provider'] != $provider) {
