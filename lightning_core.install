@@ -17,8 +17,10 @@ function lightning_core_install() {
     return;
   }
 
-  // Record our own version number in config.
-  lightning_core_modules_installed(['lightning_core']);
+  // Record all module version numbers, including our own, in config.
+  $modules = array_keys(\Drupal::moduleHandler()->getModuleList());
+  array_push($modules, 'lightning_core');
+  lightning_core_modules_installed($modules);
 
   // Mark core view modes as internal.
   lightning_core_update_8002();
@@ -96,9 +98,14 @@ function lightning_core_update_8005() {
  */
 function lightning_core_update_8006() {
   $modules = \Drupal::moduleHandler()->getModuleList();
-  $modules = array_keys($modules);
 
-  lightning_core_modules_installed($modules);
+  $keys = array_keys($modules);
+  $values = array_fill(0, count($keys), UpdateManager::VERSION_UNKNOWN);
+
+  \Drupal::configFactory()
+    ->getEditable(UpdateManager::CONFIG_NAME)
+    ->setData(array_combine($keys, $values))
+    ->save();
 }
 
 /**
