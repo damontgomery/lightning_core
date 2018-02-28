@@ -1,6 +1,0 @@
-default:
-  extensions:
-    'Drupal\DrupalExtension':
-      subcontexts:
-        paths:
-          - '%paths.base%/contexts'
