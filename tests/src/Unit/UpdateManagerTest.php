@@ -4,6 +4,7 @@ namespace Drupal\Tests\lightning_core\Unit;
 
 use Drupal\lightning_core\UpdateManager;
 use Drupal\Tests\UnitTestCase;
+use Symfony\Component\Console\Style\StyleInterface;
 
 /**
  * @coversDefaultClass \Drupal\lightning_core\UpdateManager
@@ -32,6 +33,69 @@ class UpdateManagerTest extends UnitTestCase {
       // This is a weird edge case only used by the Lightning profile.
       ['8.x-3.001', '3.001.0'],
     ];
+  }
+
+  /**
+   * @covers ::getTasks
+   */
+  public function testGetTasks() {
+    $update_manager = new TestUpdateManager(
+      new \ArrayIterator,
+      $this->createMock('\Drupal\Core\DependencyInjection\ClassResolverInterface'),
+      $this->createMock('\Drupal\Core\Config\ConfigFactoryInterface')
+    );
+
+    $tasks = $update_manager->getTasks(new TestUpdateHandler);
+    $tasks = iterator_to_array($tasks);
+    $this->assertCount(1, $tasks);
+
+    $io = $this->prophesize(StyleInterface::class);
+    $io->success('Dude, sweet!')->shouldBeCalled();
+    $tasks[0]->execute($io->reveal(), TRUE);
+  }
+
+}
+
+/**
+ * Exposes protected UpdateManager methods for testing.
+ */
+final class TestUpdateManager extends UpdateManager {
+
+  public function getTasks($handler) {
+    return parent::getTasks($handler);
+  }
+
+}
+
+/**
+ * A test class containing discoverable updates.
+ */
+final class TestUpdateHandler {
+
+  /**
+   * @update
+   */
+  public function foo(StyleInterface $io) {
+    $io->success('Dude, sweet!');
+  }
+
+  public function bar() {
+  }
+
+  /**
+   * @update
+   */
+  protected function baz() {
+    // Protected methods should not be discovered, even if they have the
+    // @update annotation.
+  }
+
+  /**
+   * @update
+   */
+  private function wambooli() {
+    // As with protected methods, private methods should never be discovered
+    // even if they have the @update annotation.
   }
 
 }
