@@ -47,11 +47,17 @@ class UpdateManagerTest extends UnitTestCase {
 
     $tasks = $update_manager->getTasks(new TestUpdateHandler);
     $tasks = iterator_to_array($tasks);
-    $this->assertCount(1, $tasks);
+    $this->assertCount(2, $tasks);
 
     $io = $this->prophesize(StyleInterface::class);
+
+    $io->confirm('Can you trip like I do?')->willReturn(TRUE);
     $io->success('Dude, sweet!')->shouldBeCalled();
-    $tasks[0]->execute($io->reveal(), TRUE);
+    $tasks[0]->execute($io->reveal());
+
+    $io->confirm('Why would you do this?')->willReturn(FALSE);
+    $io->error('Oh, the humanity!')->shouldNotBeCalled();
+    $tasks[1]->execute($io->reveal());
   }
 
 }
@@ -74,9 +80,20 @@ final class TestUpdateHandler {
 
   /**
    * @update
+   *
+   * @ask Can you trip like I do?
    */
   public function foo(StyleInterface $io) {
     $io->success('Dude, sweet!');
+  }
+
+  /**
+   * @update
+   *
+   * @ask Why would you do this?
+   */
+  public function nope(StyleInterface $io) {
+    $io->error('Oh, the humanity!');
   }
 
   public function bar() {

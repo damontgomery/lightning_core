@@ -56,9 +56,8 @@ class UpdateTask {
   protected function confirm(StyleInterface $io) {
     if ($this->docBlock->hasTag('ask')) {
       $tags = $this->docBlock->getTagsByName('ask');
-      $tag = reset($tags);
 
-      return $io->confirm($tag->getContent());
+      return $io->confirm(reset($tags)->getDescription());
     }
     return TRUE;
   }
