@@ -29,7 +29,8 @@
         "drupal/token": "^1.0",
         "drupal/pathauto": "^1.0",
         "drupal/contact_storage": "^1.0",
-        "drupal/search_api": "^1.0"
+        "drupal/search_api": "^1.0",
+        "phpdocumentor/reflection-docblock": "^2.0|^3.0.2|^4.0"
     },
     "scripts": {
         "post-install-cmd": [
