@@ -103,7 +103,7 @@ function lightning_core_update_8006() {
   $values = array_fill(0, count($keys), UpdateManager::VERSION_UNKNOWN);
 
   \Drupal::configFactory()
-    ->getEditable(UpdateManager::CONFIG_NAME)
+    ->getEditable('lightning.versions')
     ->setData(array_combine($keys, $values))
     ->save();
 }
