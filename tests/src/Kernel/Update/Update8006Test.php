@@ -16,12 +16,17 @@ class Update8006Test extends KernelTestBase {
    */
   protected static $modules = ['lightning_core', 'system', 'user'];
 
+  /**
+   * {@inheritdoc}
+   */
+  protected $strictConfigSchema = FALSE;
+
   public function testUpdate() {
     module_load_install('lightning_core');
     lightning_core_update_8006();
 
     $config = $this->container->get('config.factory')
-      ->get(UpdateManager::CONFIG_NAME);
+      ->get('lightning.versions');
 
     foreach (static::$modules as $module) {
       $this->assertSame(UpdateManager::VERSION_UNKNOWN, $config->get($module));
