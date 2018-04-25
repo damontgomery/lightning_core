@@ -1,3 +1,6 @@
+## 2.5.0
+* Security updated Drupal core to 8.5.3.
+
 ## 2.4.0
 * Security updated Drupal core to 8.5.2.
 
