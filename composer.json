@@ -26,7 +26,7 @@
         }
     },
     "require": {
-        "drupal/core": "8.5.x-dev",
+        "drupal/core": "8.6.x-dev",
         "cweagans/composer-patches": "^1.6.4",
         "drupal-composer/drupal-scaffold": "^2.0.0",
         "oomphinc/composer-installers-extender": "^1.1",
@@ -78,10 +78,6 @@
         },
         "patches": {
             "drupal/core": {
-                "1356276 - Allow profiles to provide a base/parent profile and load them in the correct order":
-                "https://www.drupal.org/files/issues/1356278-408--8.5.x-real.patch",
-                "2880374 - Experimental modules should not have warnings after being installed":
-                "https://www.drupal.org/files/issues/2880374-remove-experimental-warnings-6.patch",
                 "2869592 - Disabled update module shouldn't produce a status report warning":
                 "https://www.drupal.org/files/issues/2869592-remove-update-warning-7.patch",
                 "2885441 - EntityReferenceAutocompleteWidget should define its size setting as an integer":
@@ -98,7 +94,7 @@
         "enable-patching": true
     },
     "require-dev": {
-        "acquia/lightning_dev": "dev-8.x-1.x",
+        "acquia/lightning_dev": "dev-phpunit-6",
         "drupal/console": "^1.6"
     },
     "conflict": {
