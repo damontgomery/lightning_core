@@ -88,8 +88,8 @@ class EntityContext extends DrupalSubContextBase {
    *
    * @throws \Exception if there are no entities to visit.
    *
-   * @When I visit a(n) :entity_type
-   * @When I visit a(n) :bundle :entity_type
+   * @When I visit (?:a|an) :entity_type
+   * @When I visit (?:a|an) :bundle :entity_type
    */
   public function visitEntity($entity_type, $bundle = NULL) {
     $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
