@@ -25,5 +25,7 @@ function drush_lightning_core_pre_updatedb() {
   // to new or changed plugin definitions. Clearing all plugin caches before
   // updates begin ensures that the plugin system always has the latest plugin
   // definitions to work with.
-  Drupal::service('plugin.cache_clearer')->clearCachedDefinitions();
+  if (Drupal::hasContainer()) {
+    Drupal::service('plugin.cache_clearer')->clearCachedDefinitions();
+  }
 }
