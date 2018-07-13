@@ -3,3 +3,5 @@ core: 8.x
 type: module
 package: Lightning
 description: 'Automatically manages user roles and permissions.'
+dependencies:
+  - node
