@@ -1,3 +1,6 @@
+## 3.0.0
+* Updated Drupal core to 8.6.0.
+
 ## 2.8.0
 * Fixed a bug where user 1 could not access Lightning's administrative screens.
   (Issue #2933520)
@@ -36,7 +39,7 @@
   `Acquia\LightningExtension\Context` namespace.
 
 ## 2.0.0
-* Updated core to 8.5.x.
+* Updated Drupal core to 8.5.x.
 
 ## 1.0.0-rc3
 * Fixed a problem in the 8006 update that caused problems for users that had an
