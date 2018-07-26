@@ -1,5 +1,7 @@
 ## 3.0.0
 * Updated Drupal core to 8.6.0.
+* Removed the 'partial_matches' configuration from the Search API database
+  backend bundled with Lightning Search.
 
 ## 2.8.0
 * Fixed a bug where user 1 could not access Lightning's administrative screens.
