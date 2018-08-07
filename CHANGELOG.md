@@ -2,6 +2,10 @@
 * Updated Drupal core to 8.6.0.
 * Removed the 'partial_matches' configuration from the Search API database
   backend bundled with Lightning Search.
+* If Pathauto is installed, the Basic Page content type will automatically
+  generate URL aliases. (#74)
+* Fixed a bug where the Basic Page content type could fail to have workflow
+  enabled when it should be. (Issue #2990048)
 
 ## 2.8.0
 * Fixed a bug where user 1 could not access Lightning's administrative screens.
