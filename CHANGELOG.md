@@ -6,6 +6,8 @@
   generate URL aliases. (#74)
 * Fixed a bug where the Basic Page content type could fail to have workflow
   enabled when it should be. (Issue #2990048)
+* Fixed a bug where Lightning-generated user roles had a null is_admin value.
+  (Issue #2882197)
 
 ## 2.8.0
 * Fixed a bug where user 1 could not access Lightning's administrative screens.
