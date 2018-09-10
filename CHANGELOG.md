@@ -1,3 +1,6 @@
+## 3.1.0
+* Updated Drupal core to 8.6.1.
+
 ## 3.0.0
 * Updated Drupal core to 8.6.0.
 * Removed the 'partial_matches' configuration from the Search API database
@@ -40,7 +43,7 @@
 * Security updated Drupal core to 8.5.1. (SA-2018-002)
 * When renaming the configuration which stores extension's version numbers,
   Lightning Core will no longer assume configuration by the same name does not
-  already exist. (Issue #2955072) 
+  already exist. (Issue #2955072)
 
 ## 2.1.0
 * Behat contexts used for testing were moved into the
@@ -62,7 +65,7 @@
   Drush 9.
 * Component version numbers are now recorded on install (and via an update hook
   on existing installations) so that the `version` argument is no longer needed
-  with the `update:lightning` command. 
+  with the `update:lightning` command.
 
 ## 1.0.0-alpha3
 * Updated core to 8.4.4.
