@@ -1,4 +1,5 @@
 ## 3.2.0
+* Security updated Drupal core to 8.6.2.
 * Updated Pathauto to version 1.3. (#86)
 
 ## 3.1.0
