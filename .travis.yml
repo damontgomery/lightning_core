@@ -64,7 +64,7 @@ before_script:
 script:
   - composer validate composer.json --no-check-all --ansi --no-interaction
   - phpunit --configuration ./docroot/core --group lightning,profiles
-  - behat --config .behat.yml
+  - behat
 
 after_failure:
   - cd docroot
