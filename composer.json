@@ -73,7 +73,10 @@
     "autoload": {
         "classmap": [
             "tests/contexts/AwaitTrait.inc"
-        ]
+        ],
+        "psr-4": {
+            "Drupal\\Tests\\lightning_core\\": "tests/src"
+        }
     },
     "repositories": {
         "drupal": {
