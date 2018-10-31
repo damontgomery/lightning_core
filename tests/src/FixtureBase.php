@@ -109,6 +109,44 @@ abstract class FixtureBase implements Context, ContainerAwareInterface {
     }
     elseif ($this->container->get('theme_installer')->install([$theme])) {
       array_push($this->themes, $theme);
+
+      // This works around a weird hole in the theme extension system. Normally,
+      // when a theme is installed, the Block module will react by copying the
+      // blocks from the current default theme into the newly installed theme.
+      // However, if it can't determine which region the copied blocks should be
+      // placed into, it will set them to a blank region and disable them (this
+      // behavior is enforced by the Block entity class's preSave() method too).
+      // It seems that, in the context of this fixture class, the block system
+      // gets incorrect information from the theme system, which causes the
+      // blocks not to be copied or set up correctly. So we need to do all that.
+      if ($this->container->get('module_handler')->moduleExists('block')) {
+        // Copy blocks from the default theme. For whatever reason, the theme
+        // system will be unable to read the list of regions from the theme
+        // extension system (generally due to the fact that the extension system
+        // is so massively awful), so the blocks are copied into limbo (i.e.,
+        // disabled and in the '' region).
+        block_theme_initialize($theme);
+
+        // Load the copied blocks.
+        $blocks = $this->container->get('entity_type.manager')
+          ->getStorage('block')
+          ->loadByProperties([
+            'theme' => $theme,
+            'region' => '',
+            'status' => FALSE,
+          ]);
+
+        /** @var \Drupal\block\BlockInterface $block */
+        foreach ($blocks as $block) {
+          // Use the config system to edit the blocks directly, since the whole
+          // limbo thing is enforced by Block::preSave().
+          $this->container->get('config.factory')
+            ->getEditable($block->getConfigDependencyName())
+            ->set('region', 'content')
+            ->set('status', TRUE)
+            ->save();
+        }
+      }
     }
   }
 
