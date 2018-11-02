@@ -94,6 +94,11 @@ abstract class FixtureBase implements Context, ContainerAwareInterface {
     }
     elseif ($this->container->get('module_installer')->install([$module])) {
       array_push($this->modules, $module);
+
+      // The container has changed after module installation, so we need to
+      // update our reference to it.
+      $container = $this->container->get('kernel')->getContainer();
+      $this->setContainer($container);
     }
   }
 
