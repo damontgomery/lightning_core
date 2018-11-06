@@ -22,9 +22,3 @@ Feature: User roles and related config
     # Clean up.
     And I visit "/admin/people/roles/manage/foobaz/delete"
     And I press "Delete"
-
-  @c62e5bfa
-  Scenario: Visiting the content overview page as a content reviewer
-    Given I am logged in as a page_reviewer
-    When I visit "/admin/content"
-    Then the response status code should be 200
