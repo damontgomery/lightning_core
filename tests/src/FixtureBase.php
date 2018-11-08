@@ -4,6 +4,7 @@ namespace Drupal\Tests\lightning_core;
 
 use Behat\Behat\Context\Context;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\DrupalUserManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -30,14 +31,45 @@ abstract class FixtureBase implements Context, ContainerAwareInterface {
   private $themes = [];
 
   /**
+   * Entities to be automatically deleted after the scenario.
+   *
    * @var EntityInterface[]
    */
   private $entities = [];
 
   /**
-   * @var \Drupal\Core\Config\Config[]
+   * Raw configuration data to be restored after the scenario, keyed by ID.
+   *
+   * @var array[]
    */
   private $config = [];
+
+  /**
+   * The Drupal Extension's user manager.
+   *
+   * @var DrupalUserManagerInterface
+   */
+  private $userManager;
+
+  /**
+   * The Drupal user IDs that were logged in during the scenario.
+   *
+   * @var int[]
+   *
+   * @see ::setCurrentUser()
+   */
+  private $users = [];
+
+  /**
+   * Entity types for which to delete all content created by the current users.
+   *
+   * @var string[]
+   *
+   * @see ::setCurrentUser()
+   * @see ::tearDown()
+   * @see ::trackUserContent()
+   */
+  private $trackedEntityTypes = [];
 
   /**
    * FixtureBase constructor.
@@ -47,6 +79,35 @@ abstract class FixtureBase implements Context, ContainerAwareInterface {
    */
   public function __construct(ContainerInterface $container = NULL) {
     $this->setContainer($container ?: \Drupal::getContainer());
+  }
+
+  /**
+   * Marks content by the current user to be deleted after the scenario.
+   *
+   * @param \Drupal\DrupalUserManagerInterface $user_manager
+   *   The Drupal Extension's user manager.
+   * @param string $entity_type_id
+   *   The entity type ID to track. Any entities of this type created by the
+   *   current user will be deleted automatically after the scenario.
+   */
+  public function trackUserContent(DrupalUserManagerInterface $user_manager, $entity_type_id) {
+    $this->userManager = $user_manager;
+    $this->trackedEntityTypes[$entity_type_id] = $entity_type_id;
+  }
+
+  /**
+   * Records the current Drupal user ID if possible.
+   *
+   * @AfterStep
+   */
+  public function setCurrentUser() {
+    if ($this->userManager) {
+      $current_user = $this->userManager->getCurrentUser();
+
+      if ($current_user) {
+        $this->users[$current_user->uid] = $current_user->uid;
+      }
+    }
   }
 
   /**
@@ -159,6 +220,15 @@ abstract class FixtureBase implements Context, ContainerAwareInterface {
    * Tears down the fixture.
    */
   protected function tearDown() {
+    foreach ($this->trackedEntityTypes as $entity_type_id) {
+      /** @var \Drupal\Core\Entity\EntityStorageInterface $storage */
+      $storage = $this->container->get('entity_type.manager')
+        ->getStorage($entity_type_id);
+
+      $entities = $storage->loadByProperties(['uid' => $this->users]);
+      $storage->delete($entities);
+    }
+
     while ($this->entities) {
       array_pop($this->entities)->delete();
     }
