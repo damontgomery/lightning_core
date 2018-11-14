@@ -63,10 +63,12 @@ install:
 before_script:
   - drush runserver --default-server=builtin 8080 &>/dev/null &
   - google-chrome-stable --headless --disable-gpu --no-sandbox --remote-debugging-port=9222 http://localhost &
+  - export DTT_BASE_URL=http://127.0.0.1:8080
 
 script:
   - composer validate composer.json --no-check-all --ansi --no-interaction
   - phpunit --configuration ./docroot/core --group lightning,profiles
+  - phpunit --configuration ./docroot/core tests/src/ExistingSite
   - behat
 
 after_failure:
