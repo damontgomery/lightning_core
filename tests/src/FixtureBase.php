@@ -148,12 +148,17 @@ abstract class FixtureBase implements Context, ContainerAwareInterface {
    *
    * @param string $module
    *   The machine name of the module to install.
+   *
+   * @return bool
+   *   TRUE if the module was installed, FALSE otherwise.
    */
   protected function installModule($module) {
     if ($this->container->get('module_handler')->moduleExists($module)) {
-      return;
+      return FALSE;
     }
-    elseif ($this->container->get('module_installer')->install([$module])) {
+
+    $installed = $this->container->get('module_installer')->install([$module]);
+    if ($installed) {
       array_push($this->modules, $module);
 
       // The container has changed after module installation, so we need to
@@ -161,6 +166,7 @@ abstract class FixtureBase implements Context, ContainerAwareInterface {
       $container = $this->container->get('kernel')->getContainer();
       $this->setContainer($container);
     }
+    return $installed;
   }
 
   /**
