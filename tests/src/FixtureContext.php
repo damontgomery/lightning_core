@@ -3,6 +3,7 @@
 namespace Drupal\Tests\lightning_core;
 
 use Drupal\block\Entity\Block;
+use Drupal\node\Entity\NodeType;
 use Drupal\user\Entity\Role;
 
 /**
@@ -46,6 +47,14 @@ final class FixtureContext extends FixtureBase {
       ]);
       $this->save($block);
     }
+
+    // Create a test content type to be automatically cleaned up at the end of
+    // the scenario.
+    $node_type = NodeType::create([
+      'type' => 'test',
+      'name' => 'Test',
+    ]);
+    $this->save($node_type);
 
     if ($this->container->get('module_handler')->moduleExists('lightning_search')) {
       /** @var \Drupal\block\BlockInterface $block */
