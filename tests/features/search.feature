@@ -1,4 +1,4 @@
-@lightning @api @lightning_search
+@lightning @api @lightning_search @orca_public
 Feature: Site search
 
   @e4c5b23b
