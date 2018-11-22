@@ -226,14 +226,7 @@ abstract class FixtureBase implements Context, ContainerAwareInterface {
    * Tears down the fixture.
    */
   protected function tearDown() {
-    foreach ($this->trackedEntityTypes as $entity_type_id) {
-      /** @var \Drupal\Core\Entity\EntityStorageInterface $storage */
-      $storage = $this->container->get('entity_type.manager')
-        ->getStorage($entity_type_id);
-
-      $entities = $storage->loadByProperties(['uid' => $this->users]);
-      $storage->delete($entities);
-    }
+    $this->clearUserContent();
 
     while ($this->entities) {
       array_pop($this->entities)->delete();
@@ -252,6 +245,24 @@ abstract class FixtureBase implements Context, ContainerAwareInterface {
 
     if ($this->modules) {
       $this->container->get('module_installer')->uninstall($this->modules);
+    }
+  }
+
+  /**
+   * Deletes all content created by the current users.
+   */
+  private function clearUserContent() {
+    if (!$this->users) {
+      return;
+    }
+
+    foreach ($this->trackedEntityTypes as $entity_type_id) {
+      /** @var \Drupal\Core\Entity\EntityStorageInterface $storage */
+      $storage = $this->container->get('entity_type.manager')
+        ->getStorage($entity_type_id);
+
+      $entities = $storage->loadByProperties(['uid' => $this->users]);
+      $storage->delete($entities);
     }
   }
 
