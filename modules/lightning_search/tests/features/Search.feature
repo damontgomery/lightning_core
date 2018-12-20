@@ -2,7 +2,7 @@
 Feature: Site search
 
   @e4c5b23b
-  Scenario: Unpublished content does not appear in search results
+  Scenario: Searching for content as an anonymous user
     Given I am an anonymous user
     And test content:
       | title    | status | body                                                                   |

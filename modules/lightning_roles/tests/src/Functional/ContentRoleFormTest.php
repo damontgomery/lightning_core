@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\Tests\lightning_core\ExistingSite;
+namespace Drupal\Tests\lightning_roles\Functional;
 
-use weitzman\DrupalTestTraits\ExistingSiteBase;
+use Drupal\Tests\BrowserTestBase;
 
 /**
  * @group lightning_roles
@@ -10,16 +10,15 @@ use weitzman\DrupalTestTraits\ExistingSiteBase;
  * @group lightning
  * @group orca_public
  */
-class ContentRoleFormTest extends ExistingSiteBase {
+class ContentRoleFormTest extends BrowserTestBase {
 
   /**
    * {@inheritdoc}
    */
-  protected function prepareRequest() {
-    // The base implementation of this method will set a special cookie
-    // identifying the Mink session as a test user agent. For this kind of test,
-    // though, we don't need that.
-  }
+  protected static $modules = [
+    'lightning_core',
+    'lightning_roles',
+  ];
 
   public function test() {
     $account = $this->createUser([], NULL, TRUE);
