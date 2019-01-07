@@ -1,6 +1,6 @@
 imports:
-  - 'docroot/modules/contrib/acquia/lightning_core/tests/drupal.behat.yml'
-  - 'docroot/modules/contrib/acquia/lightning_core/tests/mink.behat.yml'
+  - 'docroot/modules/contrib/lightning_core/tests/drupal.behat.yml'
+  - 'docroot/modules/contrib/lightning_core/tests/mink.behat.yml'
 
 default:
   suites:
@@ -11,4 +11,4 @@ default:
         - '\Drupal\DrupalExtension\Context\MessageContext'
         - '\Drupal\Tests\lightning_core\FixtureContext'
       paths:
-        - 'docroot/modules/contrib/acquia/lightning_core/modules/lightning_search/tests/features'
+        - 'docroot/modules/contrib/lightning_core/modules/lightning_search/tests/features'

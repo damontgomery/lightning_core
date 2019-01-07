@@ -49,9 +49,6 @@
                 "type:bower-asset",
                 "type:npm-asset"
             ],
-            "docroot/modules/contrib/acquia/{$name}": [
-                "drupal/lightning_core"
-            ],
             "docroot/modules/contrib/{$name}": [
                 "type:drupal-module"
             ],
