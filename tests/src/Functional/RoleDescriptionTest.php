@@ -5,9 +5,7 @@ namespace Drupal\Tests\lightning_core\Functional;
 use Drupal\Tests\BrowserTestBase;
 
 /**
- * @group lightning
  * @group lightning_core
- * @group orca_public
  */
 class RoleDescriptionTest extends BrowserTestBase {
 
