@@ -1,3 +1,7 @@
+## 3.5.0
+* Lightning Core will now automatically clear all persistent caches _before_
+  running database updates with Drush 9.
+
 ## 3.4.0
 * Updated Drupal core to 8.6.4.
 
