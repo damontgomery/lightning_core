@@ -267,13 +267,29 @@ abstract class FixtureBase implements Context, ContainerAwareInterface {
       return;
     }
 
-    foreach ($this->trackedEntityTypes as $entity_type_id) {
-      /** @var \Drupal\Core\Entity\EntityStorageInterface $storage */
-      $storage = $this->container->get('entity_type.manager')
-        ->getStorage($entity_type_id);
+    /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager */
+    $entity_type_manager = $this->container->get('entity_type.manager');
 
-      $entities = $storage->loadByProperties(['uid' => $this->users]);
-      $storage->delete($entities);
+    // Regardless of which entity types we've been asked to track for automatic
+    // clean-up, only process the ones which actually exist.
+    $entity_types = array_intersect_key(
+      $entity_type_manager->getDefinitions(),
+      $this->trackedEntityTypes
+    );
+
+    /** @var \Drupal\Core\Entity\EntityTypeInterface $entity_type */
+    foreach ($entity_types as $entity_type) {
+      // Since we use user IDs to determine which entities to clean up, we can
+      // only process entity types that have a uid key.
+      $uid_key = $entity_type->getKey('uid');
+
+      if ($uid_key) {
+        $storage = $entity_type_manager->getStorage($entity_type->id());
+        $entities = $storage->loadByProperties([
+          $uid_key => $this->users,
+        ]);
+        $storage->delete($entities);
+      }
     }
   }
 
