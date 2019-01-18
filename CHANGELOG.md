@@ -1,3 +1,8 @@
+## 3.6.0
+* Lightning Core now supports attaching pictures to user accounts, and includes
+  a Compact display which displays the user's picture and name, both optionally
+  linked to the user's profile. (Issue #3026959)
+
 ## 3.5.0
 * Security updated Drupal core to 8.6.6.
 * Lightning Core will now automatically clear all persistent caches _before_
