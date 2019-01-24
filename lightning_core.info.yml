@@ -4,10 +4,10 @@ type: module
 package: Lightning
 description: 'Shared functionality for the Lightning distribution.'
 dependencies:
-  - node
-  - path
-  - text
-  - user
+  - drupal:node
+  - drupal:path
+  - drupal:text
+  - drupal:user
 components:
   - lightning_contact_form
   - lightning_page
