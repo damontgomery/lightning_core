@@ -40,7 +40,7 @@ layout:
             label: inline
             type: timestamp
             settings:
-              date_format: short
+              date_format: long_12h
               custom_date_format: ''
               timezone: ''
             third_party_settings: {  }
