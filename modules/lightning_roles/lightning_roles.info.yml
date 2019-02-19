@@ -4,4 +4,4 @@ type: module
 package: Lightning
 description: 'Automatically manages user roles and permissions.'
 dependencies:
-  - node
+  - drupal:node
