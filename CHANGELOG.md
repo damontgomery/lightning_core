@@ -1,3 +1,7 @@
+## 3.7.0
+* Security updated Drupal core to 8.6.10 (SA-CORE-2019-003).
+* Security updated Metatag to 1.8 (SA-CONTRIB-2019-021).
+
 ## 3.6.0
 * Lightning Core now supports attaching pictures to user accounts, and includes
   a Compact display which displays the user's picture and name, both optionally
