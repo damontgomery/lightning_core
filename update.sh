@@ -11,7 +11,7 @@ if [ -f $FIXTURE ]; then
     drush pm-enable menu_ui --yes
 
     # Reinstall modules which were blown away by the database restore.
-    orca fixture:install-modules
+    orca fixture:enable-modules
 fi
 
 drush updatedb --yes
