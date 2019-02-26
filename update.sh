@@ -24,4 +24,4 @@ drush site:install --yes --existing-config
 # Big Pipe interferes with non-JavaScript functional tests, so uninstall it now.
 drush pm-uninstall big_pipe --yes
 
-cd $ORCA_FIXTURE && git add . && git tag --force fresh-fixture
+orca fixture:backup --force
