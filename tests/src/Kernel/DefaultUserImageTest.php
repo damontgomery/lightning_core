@@ -16,6 +16,12 @@ class DefaultUserImageTest extends KernelTestBase {
    */
   protected static $modules = [
     'system',
+    // Even though Lightning Core declares a dependency on the User module,
+    // the entity type definition cache is not cleared in time to prevent an
+    // exception ("user entity type does not exist") when installing Lightning
+    // Core and Image in the tests. So we need to install the User module here
+    // and now.
+    'user',
   ];
 
   /**
