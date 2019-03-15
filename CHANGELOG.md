@@ -1,3 +1,10 @@
+## 4.0.0-alpha1
+* Updated Drupal core to 8.7.0-alpha1.
+
+## 3.8.0
+* Updated Drupal core to 8.6.11.
+* Removed deprecated function calls. (Issue #3034195)
+
 ## 3.7.0
 * Security updated Drupal core to 8.6.10 (SA-CORE-2019-003).
 * Security updated Metatag to 1.8 (SA-CONTRIB-2019-021).
