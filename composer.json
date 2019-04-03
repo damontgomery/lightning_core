@@ -14,7 +14,8 @@
         "drupal/search_api": "^1.0",
         "drupal/token": "^1.0",
         "oomphinc/composer-installers-extender": "^1.1",
-        "phpdocumentor/reflection-docblock": "^3.0 || ^4.0"
+        "phpdocumentor/reflection-docblock": "^3.0 || ^4.0",
+        "symfony/http-foundation": "3.4.23"
     },
     "conflict": {
         "drupal/drupal-extension": "<3.4.0"
