@@ -1,5 +1,5 @@
-## 4.0.0-alpha1
-* Updated Drupal core to 8.7.0-alpha1.
+## 4.0.0-beta1
+* Updated Drupal core to 8.7.0-beta1.
 
 ## 3.8.0
 * Updated Drupal core to 8.6.11.
