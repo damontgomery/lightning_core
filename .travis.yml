@@ -52,10 +52,14 @@ install:
   - orca static-analysis:run ./
 
   # Use ORCA to build the code base.
-  - orca fixture:init -f --sut $ORCA_SUT_NAME --core 8.7.x-dev $ORCA_FIXTURE_FLAGS
+  - orca fixture:init -f --sut $ORCA_SUT_NAME --core ~8.7.0 $ORCA_FIXTURE_FLAGS
+  # Install dev dependencies.
+  - cd $ORCA_FIXTURE
+  - composer require --dev webflo/drupal-core-require-dev:~8.7.0 --no-update
+  - composer update
 
 before_script:
-  - cd $ORCA_FIXTURE/docroot
+  - cd docroot
   - $TRAVIS_BUILD_DIR/update.sh $VERSION
 
 script:

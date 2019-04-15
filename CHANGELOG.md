@@ -1,3 +1,6 @@
+## 4.0.0-beta2
+* Updated Drupal core to 8.7.0-beta2.
+
 ## 4.0.0-beta1
 * Updated Drupal core to 8.7.0-beta1.
 
