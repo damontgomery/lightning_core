@@ -8,7 +8,7 @@ cache:
     - "$HOME/.drush/cache"
 
 php:
-  - 7.1
+  - '7.1'
 
 env:
   - VERSION=HEAD ORCA_FIXTURE_FLAGS='--dev --sut-only' ORCA_TEST_FLAGS=--sut-only
@@ -52,10 +52,10 @@ install:
   - orca static-analysis:run ./
 
   # Use ORCA to build the code base.
-  - orca fixture:init -f --sut $ORCA_SUT_NAME --core ~8.7.0 $ORCA_FIXTURE_FLAGS
+  - orca fixture:init -f --sut $ORCA_SUT_NAME --core 8.7.x-dev $ORCA_FIXTURE_FLAGS
   # Install dev dependencies.
   - cd $ORCA_FIXTURE
-  - composer require --dev webflo/drupal-core-require-dev:~8.7.0 --no-update
+  - composer require --dev webflo/drupal-core-require-dev:8.7.x-dev --no-update
   - composer update
 
 before_script:
