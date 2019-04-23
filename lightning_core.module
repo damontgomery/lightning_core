@@ -201,6 +201,22 @@ function lightning_core_form_user_form_alter(array &$form) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function lightning_core_form_system_modules_alter(array &$form) {
+  // This rule prevents acquia_telemetry module's description from increasing
+  // the page width.
+  $css = "#edit-modules-acquia-telemetry-enable-description { white-space: normal; overflow: hidden; }";
+  $form['#attached']['html_head'][] = [
+    [
+      '#tag' => 'style',
+      '#value' => $css,
+    ],
+    'acquia-telemetry-css'
+  ];
+}
+
+/**
  * Rebuilds the service container.
  */
 function lightning_core_rebuild_container() {
