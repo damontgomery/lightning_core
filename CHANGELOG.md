@@ -1,8 +1,11 @@
-## 4.0.0-beta2
-* Updated Drupal core to 8.7.0-beta2.
+## 4.0.0
+* Updated Drupal core to 8.7.0.
 
-## 4.0.0-beta1
-* Updated Drupal core to 8.7.0-beta1.
+## 3.10.0
+* Security updated Drupal core to 8.6.15.
+
+## 3.9.0
+* Security updated Drupal core to 8.6.13 (SA-CORE-2019-004).
 
 ## 3.8.0
 * Updated Drupal core to 8.6.11.
