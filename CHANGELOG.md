@@ -1,5 +1,8 @@
 ## 4.2.0
 * Updated Contact Storage to 1.0-beta10.
+* Updated Drupal core to 8.7.3.
+* Many changes to internal testing infrastructure, but nothing that
+  should affect users of Lightning Core.
 
 ## 4.1.0
 * Security updated Drupal core to 8.7.1. (SA-CORE-2019-007)
