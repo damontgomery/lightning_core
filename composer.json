@@ -6,7 +6,7 @@
     "require": {
         "cweagans/composer-patches": "^1.6.4",
         "drupal-composer/drupal-scaffold": "^2.0.0",
-        "drupal/acquia_connector": "^1.1",
+        "drupal/acquia_connector": "*",
         "drupal/contact_storage": "^1.0.0-beta10",
         "drupal/core": "~8.7.3 || 8.7.x-dev",
         "drupal/metatag": "^1.8",
