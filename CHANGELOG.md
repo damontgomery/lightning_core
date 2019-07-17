@@ -1,3 +1,7 @@
+## 4.4.0
+* Hotfixed a Composer error caused by erroneous configuration shipped
+  with Lightning Core 4.3.0.
+
 ## 4.3.0
 * Security updated Drupal core to 8.7.5. (SA-CORE-2019-008)
 * Lightning Core now allows any version of Acquia Connector to be installed.
