@@ -1,3 +1,7 @@
+## 4.3.0
+* Security updated Drupal core to 8.7.5. (SA-CORE-2019-008)
+* Lightning Core now allows any version of Acquia Connector to be installed.
+
 ## 4.2.0
 * Updated Contact Storage to 1.0-beta10.
 * Updated Drupal core to 8.7.3.

@@ -216,7 +216,7 @@ function lightning_core_form_system_modules_alter(array &$form) {
       '#tag' => 'style',
       '#value' => $css,
     ],
-    'acquia-telemetry-css'
+    'acquia-telemetry-css',
   ];
 }
 

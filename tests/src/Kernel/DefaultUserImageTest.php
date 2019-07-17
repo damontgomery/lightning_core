@@ -12,12 +12,9 @@ use Drupal\KernelTests\KernelTestBase;
 class DefaultUserImageTest extends KernelTestBase {
 
   /**
-   * @inheritdoc
+   * {@inheritdoc}
    */
-  protected static $modules = [
-    'system',
-    'user',
-  ];
+  protected static $modules = ['system', 'user'];
 
   /**
    * {@inheritdoc}

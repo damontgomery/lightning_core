@@ -42,7 +42,7 @@ class UpdateManagerTest extends UnitTestCase {
     // Prevent 'undefined constant' errors caused by ModuleExtensionList using
     // the DRUPAL_MINIMUM_PHP constant from bootstrap.inc, which is never loaded
     // during this test.
-    if (! defined('DRUPAL_MINIMUM_PHP')) {
+    if (!defined('DRUPAL_MINIMUM_PHP')) {
       define('DRUPAL_MINIMUM_PHP', '5.5.9');
     }
 
@@ -53,7 +53,7 @@ class UpdateManagerTest extends UnitTestCase {
       $this->createMock('\Drupal\Core\Extension\ModuleExtensionList')
     );
 
-    $tasks = $update_manager->getTasks(new TestUpdateHandler);
+    $tasks = $update_manager->getTasks(new TestUpdateHandler());
     $tasks = iterator_to_array($tasks);
     $this->assertCount(2, $tasks);
 
@@ -111,8 +111,8 @@ final class TestUpdateHandler {
    * @update
    */
   protected function baz() {
-    // Protected methods should not be discovered, even if they have the
-    // @update annotation.
+    // Protected methods should not be discovered, even if they have the @update
+    // annotation.
   }
 
   /**

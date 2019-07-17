@@ -48,7 +48,7 @@ final class WatchdogContext extends DrupalSubContextBase {
       return;
     }
 
-    if (! \Drupal::moduleHandler()->moduleExists('dblog')) {
+    if (!\Drupal::moduleHandler()->moduleExists('dblog')) {
       $this->uninstall = \Drupal::service('module_installer')->install(['dblog']);
     }
     $this->startTime = time();
