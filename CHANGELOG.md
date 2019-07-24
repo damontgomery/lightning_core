@@ -1,3 +1,7 @@
+## 4.5.0
+* Fixed a Drupal Console-related error that could appear even if Drupal Console is not
+  installed. (Issue #3007425)
+
 ## 4.4.0
 * Hotfixed a Composer error caused by erroneous configuration shipped
   with Lightning Core 4.3.0.
