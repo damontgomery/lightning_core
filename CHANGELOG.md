@@ -1,4 +1,5 @@
 ## 4.5.0
+* Security updated Metatag to 1.9.
 * Fixed a Drupal Console-related error that could appear even if Drupal Console
   is not installed. (Issue #3007425)
 * Module version numbers recorded in the lightning_core.versions config are
