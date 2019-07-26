@@ -105,6 +105,7 @@
             "@drupal-scaffold"
         ],
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "log": "ls -t ./logs/*.md | xargs -I{} sh -c \"cat {}; echo ''\" > CHANGELOG.md",
         "nuke": "rm -r -f docroot vendor",
         "pull": "cp -R -f ./docroot/modules/contrib/lightning_core/* .",
         "push": [
